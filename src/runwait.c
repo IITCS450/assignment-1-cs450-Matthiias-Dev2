@@ -59,14 +59,15 @@ int main(int c, char **v) {
     printf("Child PID: %ld\n", (long)pid);
 
     if (WIFEXITED(status)) {
-        printf("Exit code: %d\n", WEXITSTATUS(status));
+        printf("exit=%d\n", WEXITSTATUS(status));
     } else if (WIFSIGNALED(status)) {
         int sig = WTERMSIG(status);
         printf("Terminated by signal: %d (%s)\n", sig, strsignal(sig));
     } else {
         printf("Child ended with unknown status: %d\n", status);
     }
-
+    
     printf("Elapsed time: %.6f seconds\n", diff_sec(start, end));
+
     return 0;
 }
